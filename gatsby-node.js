@@ -1,14 +1,42 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
-// You can delete this file if you're not using it
+const axios = require(`axios`)
 
-/**
- * You can uncomment the following line to verify that
- * your plugin is being loaded in your site.
- *
- * See: https://www.gatsbyjs.com/docs/creating-a-local-plugin/#developing-a-local-plugin-that-is-outside-your-project
- */
-exports.onPreInit = () => console.log("Loaded gatsby-starter-plugin")
+const fetch = async (limit = 251) => {
+  const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
+  const response = await axios.get(url)
+  let pokemons = []
+
+  for (const pokemon of response.data.results) {
+    const url = pokemon.url
+    const resp = await axios.get(url)
+    pokemons.push({
+      name: pokemon.name,
+      image: resp.data.sprites.front_default,
+    })
+  }
+  return pokemons
+}
+
+exports.sourceNodes = async ({
+  actions,
+  createContentDigest,
+  createNodeId,
+  getNodesByType,
+}) => {
+  const { createNode } = actions
+
+  const pokemons = await fetch()
+
+  pokemons.forEach(pokemon => {
+    createNode({
+      ...pokemon,
+      id: createNodeId(`${pokemon.name}`),
+      internal: {
+        type: 'POKEMON',
+        content: JSON.stringify(pokemon),
+        contentDigest: createContentDigest(pokemon),
+      },
+    })
+  })
+
+  return
+}

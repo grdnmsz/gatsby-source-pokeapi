@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-plugin",
-  "version": "1.0.0",
+  "name": "gatsby-source-pokeapi",
+  "version": "0.0.1",
   "description": "A minimal boilerplate for the essential files Gatsby looks for in a plugin",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,9 @@
     "gatsby",
     "gatsby-plugin"
   ],
-  "author": "Kyle Gill <kyle.robert.gill@gmail.com>",
-  "license": "0BSD"
+  "author": "Gordon Meszaros",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
 }
