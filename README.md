@@ -23,6 +23,24 @@ module.exports = {
 ```
 
 ## How to query
+```js
+query {
+  allPokemon {
+    nodes {
+      name
+      stats {
+        attack
+        defense
+        special_attack
+        hp
+        special_defense
+        speed
+      }
+      types
+    }
+  }
+}
+```
 
 ## License 
 This project is under the [MIT license](https://github.com/grdnmsz/gatsby-source-pokeapi/blob/main/LICENSE).
