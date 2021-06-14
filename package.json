@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-pokeapi",
   "version": "0.0.1",
-  "description": "A minimal boilerplate for the essential files Gatsby looks for in a plugin",
+  "description": "A gatsby source plugin to fetch Pokemon data through pokeapi.co",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

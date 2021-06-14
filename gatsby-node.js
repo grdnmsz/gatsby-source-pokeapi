@@ -1,6 +1,6 @@
 const axios = require(`axios`)
 
-const fetch = async (limit = 251) => {
+const fetch = async (limit = 151) => {
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
   const response = await axios.get(url)
   let pokemons = []
@@ -21,10 +21,10 @@ exports.sourceNodes = async ({
   createContentDigest,
   createNodeId,
   getNodesByType,
-}) => {
+}, pluginOptions) => {
   const { createNode } = actions
 
-  const pokemons = await fetch()
+  const pokemons = await fetch(pluginOptions.nbOfPokemons)
 
   pokemons.forEach(pokemon => {
     createNode({
