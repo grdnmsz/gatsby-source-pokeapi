@@ -9,7 +9,7 @@ npm install gatsby-source-pokeapi
 
 ## How to use
 In your `gatsby-config.js`
-```
+```js
 module.exports = {
   plugins: [
     {

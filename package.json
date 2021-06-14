@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-pokeapi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A gatsby source plugin to fetch Pokemon data through pokeapi.co",
   "main": "index.js",
   "scripts": {
