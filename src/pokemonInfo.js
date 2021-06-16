@@ -10,9 +10,7 @@ const getTypes = arrayTypes => {
 
 const getBaseStats = arrayStats => {
   let stats = {}
-  for (const { base_stat, stat } of arrayStats) {
-    stats[stat.name] = base_stat
-  }
+  arrayStats.forEach(({ base_stat, stat }) => (stats[stat.name] = base_stat))
   return stats
 }
 
