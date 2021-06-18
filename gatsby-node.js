@@ -44,13 +44,12 @@ exports.sourceNodes = async (
 }
 
 exports.onCreateNode = async ({
-  node, // the node that was just created
+  node,
   actions: { createNode },
   createNodeId,
   getCache,
 }) => {
   const fileNode = await createRemoteFileNode({
-    // the url of the remote image to generate a node for
     url: node.imageUrl,
     parentNodeId: node.id,
     createNode,
@@ -58,6 +57,7 @@ exports.onCreateNode = async ({
     getCache,
   })
   if (fileNode) {
+    // save the ID of the fileNode on the Pokemon node
     node.remoteImage___NODE = fileNode.id
   }
 }
