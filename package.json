@@ -17,5 +17,5 @@
     "axios": "^0.21.1",
     "gatsby-source-filesystem": "^3.7.1"
   },
-  "hompage": "https://github.com/grdnmsz/gatsby-source-pokeapi"
+  "homepage": "https://github.com/grdnmsz/gatsby-source-pokeapi"
 }
