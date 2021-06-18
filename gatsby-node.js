@@ -1,6 +1,8 @@
 const axios = require(`axios`)
 const { getTypes, getBaseStats } = require('./src/pokemonInfo')
 
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+
 const fetch = async (limit = 151) => {
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
   const response = await axios.get(url)
@@ -11,7 +13,7 @@ const fetch = async (limit = 151) => {
 
     pokemons.push({
       name: pokemon.name,
-      image: resp.data.sprites.front_default,
+      imageUrl: resp.data.sprites.front_default,
       stats: getBaseStats(resp.data.stats),
       types: getTypes(resp.data.types),
     })
@@ -39,4 +41,23 @@ exports.sourceNodes = async (
   })
 
   return
+}
+
+exports.onCreateNode = async ({
+  node, // the node that was just created
+  actions: { createNode },
+  createNodeId,
+  getCache,
+}) => {
+  const fileNode = await createRemoteFileNode({
+    // the url of the remote image to generate a node for
+    url: node.imageUrl,
+    parentNodeId: node.id,
+    createNode,
+    createNodeId,
+    getCache,
+  })
+  if (fileNode) {
+    node.remoteImage___NODE = fileNode.id
+  }
 }
